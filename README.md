@@ -5,4 +5,4 @@ This repository contains front-end projects built following the [roadmap.sh]([ht
 https://roadmap.sh/projects/portfolio-website
 
 
-projects - CHange log Component - https://github.com/Kameshaditya60/RoadMap_Projects.git
+projects - CHange log Component - https://roadmap.sh/projects/changelog-component
