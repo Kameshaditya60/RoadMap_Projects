@@ -1,0 +1,121 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f7f7f7;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.testimonial-section {
+  max-width: 900px;
+  display: grid;
+  gap: 2rem;
+}
+
+/* General card styles */
+.testimonial {
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Card themes */
+.card-dark {
+  background: #111;
+  color: #fff;
+}
+
+.card-light {
+  background: #fff;
+  border: 2px solid #222;
+  color: #111;
+}
+
+.card-wide {
+  display: flex;
+  background: #111;
+  color: #fff;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.photo-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.content .stars {
+  color: gold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.quote {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.role {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.slider {
+  border: 2px solid #222;
+  background: #fff;
+  text-align: center;
+}
+
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.arrow {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.avatars .avatar.small {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #ccc;
+}
+
+.center {
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .card-wide {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .carousel-nav {
+    flex-direction: column;
+  }
+}
