@@ -133,4 +133,23 @@ if (command === 'add') {
     saveExpenses(updatedExpenses);
     console.log(`✅ Expense with ID ${idToRemove} has been removed.`);
   }
+}  else if (command === 'summary') {
+  const expenses = loadExpenses();
+
+  const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+  console.log(`💸 Total Expenses: ₹${total}`);
+
+  const categorySummary = {};
+  expenses.forEach(exp => {
+    if (!categorySummary[exp.category]) {
+      categorySummary[exp.category] = 0;
+    }
+    categorySummary[exp.category] += exp.amount;
+  });
+
+  console.log("📊 Breakdown by Category:");
+  for (const category in categorySummary) {
+    console.log(`- ${category}: ₹${categorySummary[category]}`);
+  }
 }
+
