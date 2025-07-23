@@ -62,4 +62,22 @@ if (command === 'add') {
   saveExpenses(expenses);
 
   console.log('✅ Expense added:', newExpense);
+
+}  else if (command === 'list') {
+  const expenses = loadExpenses();
+
+  if (expenses.length === 0) {
+    console.log('📭 No expenses found.');
+    process.exit(0);
+  }
+
+  console.log(`📋 Total Expenses: ${expenses.length}`);
+  expenses.forEach(exp => {
+    const formattedDate = new Date(exp.date).toLocaleDateString();
+    console.log(`📅 ${formattedDate} | 💬 ${exp.description} | 💰 ₹${exp.amount} | 🏷️ ${exp.category}`);
+  });
 }
+
+
+
+

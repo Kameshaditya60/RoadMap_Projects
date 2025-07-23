@@ -5,5 +5,19 @@
     "amount": 150,
     "date": "2025-07-23T12:15:10.370Z",
     "category": "Food"
+  },
+  {
+    "id": 1753273118500,
+    "description": "Coffee",
+    "amount": 80,
+    "date": "2025-07-23T12:18:38.500Z",
+    "category": "Food"
+  },
+  {
+    "id": 1753273118763,
+    "description": "Auto Fare",
+    "amount": 150,
+    "date": "2025-07-23T12:18:38.763Z",
+    "category": "Travel"
   }
 ]
