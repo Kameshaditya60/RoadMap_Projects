@@ -116,4 +116,21 @@ if (command === 'add') {
       console.log(`📅 ${formattedDate} | 💬 ${exp.description} | 💰 ₹${exp.amount} | 🏷️ ${exp.category}`);
     });
   }
+} else if (command === 'remove') {
+  const idToRemove = parseInt(args[0]);
+
+  if (isNaN(idToRemove)) {
+    console.log("❌ Usage: node app.js remove <expense_id>");
+    process.exit(1);
+  }
+
+  const expenses = loadExpenses();
+  const updatedExpenses = expenses.filter(exp => exp.id !== idToRemove);
+
+  if (expenses.length === updatedExpenses.length) {
+    console.log(`❌ Expense with ID ${idToRemove} not found.`);
+  } else {
+    saveExpenses(updatedExpenses);
+    console.log(`✅ Expense with ID ${idToRemove} has been removed.`);
+  }
 }
