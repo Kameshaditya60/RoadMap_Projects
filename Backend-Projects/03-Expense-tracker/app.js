@@ -37,8 +37,11 @@ function loadExpenses() {
 
 
 // CLI Arguments
-const [,, command, ...args] = process.argv;
 
+const [,, command, ...args] = process.argv;
+console.log("args:", args);
+
+    
 if (command === 'add') {
   const [description, amountStr, category] = args;
   const amount = parseFloat(amountStr);
@@ -76,8 +79,41 @@ if (command === 'add') {
     const formattedDate = new Date(exp.date).toLocaleDateString();
     console.log(`📅 ${formattedDate} | 💬 ${exp.description} | 💰 ₹${exp.amount} | 🏷️ ${exp.category}`);
   });
+
+} else if (command === 'filter') {
+    console.log("args:", args);
+  const filterType = args[0];
+  const filterValue = args[1];
+  console.log("Filter Type:", filterType);
+  console.log("Filter Value:", filterValue);
+
+  if (!filterType || !filterValue) {
+    console.log("❌ Usage: node app.js filter <category|date> <value>");
+    process.exit(1);
+  }
+
+  const expenses = loadExpenses();
+
+  let filtered = [];
+
+  if (filterType === 'category') {
+    filtered = expenses.filter(exp => exp.category.toLowerCase() === filterValue.toLowerCase());
+  } else if (filterType === 'date') {
+    filtered = expenses.filter(exp => {
+      const expDate = new Date(exp.date).toISOString().split('T')[0];
+      return expDate === filterValue;
+    });
+  } else {
+    console.log("❌ Invalid filter type. Use 'category' or 'date'");
+    process.exit(1);
+  }
+
+  if (filtered.length === 0) {
+    console.log("📭 No matching expenses found.");
+  } else {
+    filtered.forEach(exp => {
+      const formattedDate = new Date(exp.date).toLocaleDateString();
+      console.log(`📅 ${formattedDate} | 💬 ${exp.description} | 💰 ₹${exp.amount} | 🏷️ ${exp.category}`);
+    });
+  }
 }
-
-
-
-
