@@ -19,3 +19,5 @@ https://roadmap.sh/projects/accessible-form-ui
 02 Github User activity - https://roadmap.sh/projects/github-user-activity
 03 Expense Tracker 
  https://roadmap.sh/projects/expense-tracker
+04 Guessing Game CLI 
+https://roadmap.sh/projects/number-guessing-game
