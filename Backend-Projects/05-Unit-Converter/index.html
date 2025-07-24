@@ -94,11 +94,14 @@ button {
   <button id="themeToggle" onclick="toggleTheme()">🌙 Dark Mode</button>
 
 
-  <div class="tabs">
-    <button class="tab-btn active" onclick="showTab('length')">Length</button>
-    <button class="tab-btn" onclick="showTab('weight')">Weight</button>
-    <button class="tab-btn" onclick="showTab('temperature')">Temperature</button>
-  </div>
+ <div class="tabs">
+  <button class="tab-btn active" onclick="showTab('length')">Length</button>
+  <button class="tab-btn" onclick="showTab('weight')">Weight</button>
+  <button class="tab-btn" onclick="showTab('temperature')">Temperature</button>
+  <button class="tab-btn" onclick="showTab('volume')">Volume</button>
+  <button class="tab-btn" onclick="showTab('area')">Area</button>
+</div>
+
 
   <!-- Length Converter -->
   <div id="length" class="converter active">
@@ -170,6 +173,62 @@ button {
     <button onclick="convertTemperature()">Convert</button>
     <div class="result" id="tempResult"></div>
   </div>
+
+  <!-- Volume Converter -->
+<div id="volume" class="converter">
+  <input type="number" id="volumeInput" placeholder="Enter value">
+  <select id="volumeFrom">
+    <option value="milliliter">Milliliter</option>
+    <option value="liter">Liter</option>
+    <option value="cubic_meter">Cubic Meter</option>
+    <option value="gallon">Gallon (US)</option>
+    <option value="quart">Quart (US)</option>
+    <option value="pint">Pint (US)</option>
+  </select>
+  to
+  <select id="volumeTo">
+    <option value="milliliter">Milliliter</option>
+    <option value="liter">Liter</option>
+    <option value="cubic_meter">Cubic Meter</option>
+    <option value="gallon">Gallon (US)</option>
+    <option value="quart">Quart (US)</option>
+    <option value="pint">Pint (US)</option>
+  </select>
+  <br>
+  <button onclick="convertVolume()">Convert</button>
+  <div class="result" id="volumeResult"></div>
+</div>
+
+
+<!-- Area Converter -->
+<div id="area" class="converter">
+  <input type="number" id="areaInput" placeholder="Enter value">
+  <select id="areaFrom">
+    <option value="square_millimeter">Square Millimeter</option>
+    <option value="square_centimeter">Square Centimeter</option>
+    <option value="square_meter">Square Meter</option>
+    <option value="square_kilometer">Square Kilometer</option>
+    <option value="square_inch">Square Inch</option>
+    <option value="square_foot">Square Foot</option>
+    <option value="square_yard">Square Yard</option>
+    <option value="square_mile">Square Mile</option>
+  </select>
+  to
+  <select id="areaTo">
+    <option value="square_millimeter">Square Millimeter</option>
+    <option value="square_centimeter">Square Centimeter</option>
+    <option value="square_meter">Square Meter</option>
+    <option value="square_kilometer">Square Kilometer</option>
+    <option value="square_inch">Square Inch</option>
+    <option value="square_foot">Square Foot</option>
+    <option value="square_yard">Square Yard</option>
+    <option value="square_mile">Square Mile</option>
+  </select>
+  <br>
+  <button onclick="convertArea()">Convert</button>
+  <div class="result" id="areaResult"></div>
+</div>
+
 
   <script>
     // Tab switching logic
@@ -254,6 +313,62 @@ button {
 
       document.getElementById("tempResult").innerText = `${value} ${from} = ${result.toFixed(2)} ${to}`;
     }
+
+    //  volume conversion
+    const volumeFactors = {
+  milliliter: 0.001,
+  liter: 1,
+  cubic_meter: 1000,
+  gallon: 3.78541,
+  quart: 0.946353,
+  pint: 0.473176
+};
+
+function convertVolume() {
+  const value = parseFloat(document.getElementById("volumeInput").value);
+  const from = document.getElementById("volumeFrom").value;
+  const to = document.getElementById("volumeTo").value;
+
+  if (isNaN(value)) {
+    document.getElementById("volumeResult").innerText = "Please enter a valid number.";
+    return;
+  }
+
+  const liters = value * volumeFactors[from];
+  const result = liters / volumeFactors[to];
+
+  document.getElementById("volumeResult").innerText = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+}
+
+
+//   Area Conversion
+const areaFactors = {
+  square_millimeter: 0.000001,
+  square_centimeter: 0.0001,
+  square_meter: 1,
+  square_kilometer: 1000000,
+  square_inch: 0.00064516,
+  square_foot: 0.092903,
+  square_yard: 0.836127,
+  square_mile: 2589988.11
+};
+
+function convertArea() {
+  const value = parseFloat(document.getElementById("areaInput").value);
+  const from = document.getElementById("areaFrom").value;
+  const to = document.getElementById("areaTo").value;
+
+  if (isNaN(value)) {
+    document.getElementById("areaResult").innerText = "Please enter a valid number.";
+    return;
+  }
+
+  const meters2 = value * areaFactors[from];
+  const result = meters2 / areaFactors[to];
+
+  document.getElementById("areaResult").innerText = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+}
+
 
     // Theme Toggle Logic
 function toggleTheme() {
