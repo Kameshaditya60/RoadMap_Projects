@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit Converter</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.dark input,
+body.dark select,
+body.dark button {
+  background-color: #1e1e1e;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+#themeToggle {
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+    h1 {
+      text-align: center;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tabs button {
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .tabs button.active {
+      background-color: #fff;
+      border-bottom: none;
+      font-weight: bold;
+    }
+
+    .converter {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 0 0 5px 5px;
+      background-color: #fff;
+    }
+
+    .converter.active {
+      display: block;
+    }
+
+    input, select, button {
+      margin: 10px;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Unit Converter</h1>
+  <button id="themeToggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('length')">Length</button>
+    <button class="tab-btn" onclick="showTab('weight')">Weight</button>
+    <button class="tab-btn" onclick="showTab('temperature')">Temperature</button>
+  </div>
+
+  <!-- Length Converter -->
+  <div id="length" class="converter active">
+    <input type="number" id="lengthInput" placeholder="Enter value">
+    <select id="lengthFrom">
+      <option value="millimeter">Millimeter</option>
+      <option value="centimeter">Centimeter</option>
+      <option value="meter">Meter</option>
+      <option value="kilometer">Kilometer</option>
+      <option value="inch">Inch</option>
+      <option value="foot">Foot</option>
+      <option value="yard">Yard</option>
+      <option value="mile">Mile</option>
+    </select>
+    to
+    <select id="lengthTo">
+      <option value="millimeter">Millimeter</option>
+      <option value="centimeter">Centimeter</option>
+      <option value="meter">Meter</option>
+      <option value="kilometer">Kilometer</option>
+      <option value="inch">Inch</option>
+      <option value="foot">Foot</option>
+      <option value="yard">Yard</option>
+      <option value="mile">Mile</option>
+    </select>
+    <br>
+    <button onclick="convertLength()">Convert</button>
+    <div class="result" id="lengthResult"></div>
+  </div>
+
+  <!-- Weight Converter -->
+  <div id="weight" class="converter">
+    <input type="number" id="weightInput" placeholder="Enter value">
+    <select id="weightFrom">
+      <option value="milligram">Milligram</option>
+      <option value="gram">Gram</option>
+      <option value="kilogram">Kilogram</option>
+      <option value="ounce">Ounce</option>
+      <option value="pound">Pound</option>
+    </select>
+    to
+    <select id="weightTo">
+      <option value="milligram">Milligram</option>
+      <option value="gram">Gram</option>
+      <option value="kilogram">Kilogram</option>
+      <option value="ounce">Ounce</option>
+      <option value="pound">Pound</option>
+    </select>
+    <br>
+    <button onclick="convertWeight()">Convert</button>
+    <div class="result" id="weightResult"></div>
+  </div>
+
+  <!-- Temperature Converter -->
+  <div id="temperature" class="converter">
+    <input type="number" id="tempInput" placeholder="Enter value">
+    <select id="tempFrom">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+    to
+    <select id="tempTo">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+    <br>
+    <button onclick="convertTemperature()">Convert</button>
+    <div class="result" id="tempResult"></div>
+  </div>
+
+  <script>
+    // Tab switching logic
+    function showTab(tabId) {
+      document.querySelectorAll(".converter").forEach(div => div.classList.remove("active"));
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      document.getElementById(tabId).classList.add("active");
+      event.target.classList.add("active");
+    }
+
+    // Length conversion
+    const lengthFactors = {
+      millimeter: 0.001,
+      centimeter: 0.01,
+      meter: 1,
+      kilometer: 1000,
+      inch: 0.0254,
+      foot: 0.3048,
+      yard: 0.9144,
+      mile: 1609.34
+    };
+
+    function convertLength() {
+      const value = parseFloat(document.getElementById("lengthInput").value);
+      const from = document.getElementById("lengthFrom").value;
+      const to = document.getElementById("lengthTo").value;
+
+      if (isNaN(value)) {
+        document.getElementById("lengthResult").innerText = "Please enter a valid number.";
+        return;
+      }
+
+      const meters = value * lengthFactors[from];
+      const result = meters / lengthFactors[to];
+      document.getElementById("lengthResult").innerText = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+    }
+
+    // Weight conversion
+    const weightFactors = {
+      milligram: 0.001,
+      gram: 1,
+      kilogram: 1000,
+      ounce: 28.3495,
+      pound: 453.592
+    };
+
+    function convertWeight() {
+      const value = parseFloat(document.getElementById("weightInput").value);
+      const from = document.getElementById("weightFrom").value;
+      const to = document.getElementById("weightTo").value;
+
+      if (isNaN(value)) {
+        document.getElementById("weightResult").innerText = "Please enter a valid number.";
+        return;
+      }
+
+      const grams = value * weightFactors[from];
+      const result = grams / weightFactors[to];
+      document.getElementById("weightResult").innerText = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+    }
+
+    // Temperature conversion
+    function convertTemperature() {
+      const value = parseFloat(document.getElementById("tempInput").value);
+      const from = document.getElementById("tempFrom").value;
+      const to = document.getElementById("tempTo").value;
+
+      if (isNaN(value)) {
+        document.getElementById("tempResult").innerText = "Please enter a valid number.";
+        return;
+      }
+
+      let celsius;
+      if (from === "celsius") celsius = value;
+      else if (from === "fahrenheit") celsius = (value - 32) * 5/9;
+      else if (from === "kelvin") celsius = value - 273.15;
+
+      let result;
+      if (to === "celsius") result = celsius;
+      else if (to === "fahrenheit") result = (celsius * 9/5) + 32;
+      else if (to === "kelvin") result = celsius + 273.15;
+
+      document.getElementById("tempResult").innerText = `${value} ${from} = ${result.toFixed(2)} ${to}`;
+    }
+
+    // Theme Toggle Logic
+function toggleTheme() {
+  const body = document.body;
+  body.classList.toggle("dark");
+
+  const isDark = body.classList.contains("dark");
+  document.getElementById("themeToggle").textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+// Load saved theme on page load
+window.onload = () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    document.getElementById("themeToggle").textContent = "☀️ Light Mode";
+  }
+};
+
+  </script>
+
+</body>
+</html>
