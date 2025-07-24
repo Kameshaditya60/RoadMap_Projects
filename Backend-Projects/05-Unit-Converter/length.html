@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Length Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+  <a href="length.html">Length</a> |
+  <a href="weight.html">Weight</a> |
+  <a href="temperature.html">Temperature</a>
+</nav>
+
+
+  <h1>Length Unit Converter</h1>
+
+  <input type="number" id="inputValue" placeholder="Enter value">
+
+  <select id="fromUnit">
+    <option value="millimeter">Millimeter</option>
+    <option value="centimeter">Centimeter</option>
+    <option value="meter">Meter</option>
+    <option value="kilometer">Kilometer</option>
+    <option value="inch">Inch</option>
+    <option value="foot">Foot</option>
+    <option value="yard">Yard</option>
+    <option value="mile">Mile</option>
+  </select>
+
+  <span>to</span>
+
+  <select id="toUnit">
+    <option value="millimeter">Millimeter</option>
+    <option value="centimeter">Centimeter</option>
+    <option value="meter">Meter</option>
+    <option value="kilometer">Kilometer</option>
+    <option value="inch">Inch</option>
+    <option value="foot">Foot</option>
+    <option value="yard">Yard</option>
+    <option value="mile">Mile</option>
+  </select>
+
+  <br>
+  <button onclick="convertLength()">Convert</button>
+
+  <div class="result" id="result">
+    <!-- here result will be displayed -->
+  </div>
+
+  <script>
+    const lengthFactors = {
+      millimeter: 0.001,
+      centimeter: 0.01,
+      meter: 1,
+      kilometer: 1000,
+      inch: 0.0254,
+      foot: 0.3048,
+      yard: 0.9144,
+      mile: 1609.34
+    };
+
+    function convertLength() {
+      const inputValue = parseFloat(document.getElementById("inputValue").value);
+      const fromUnit = document.getElementById("fromUnit").value;
+      const toUnit = document.getElementById("toUnit").value;
+
+      if (isNaN(inputValue)) {
+        document.getElementById("result").innerText = "Please enter a valid number.";
+        return;
+      }
+
+      // Convert from original unit to meters
+      const valueInMeters = inputValue * lengthFactors[fromUnit];
+
+      // Convert from meters to target unit
+      const convertedValue = valueInMeters / lengthFactors[toUnit];
+
+      document.getElementById("result").innerText =
+        `${inputValue} ${fromUnit} = ${convertedValue.toFixed(4)} ${toUnit}`;
+    }
+  </script>
+
+</body>
+</html>
