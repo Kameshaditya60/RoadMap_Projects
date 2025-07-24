@@ -86,6 +86,54 @@ button {
       font-weight: bold;
       font-size: 18px;
     }
+
+    .form-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-group input,
+.form-group select,
+.form-group button {
+  flex: 1 1 150px;
+  min-width: 100px;
+  max-width: 200px;
+  box-sizing: border-box;
+}
+
+/* Responsive layout tweaks */
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    flex: 1 1 45%;
+    margin: 5px 2px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  #themeToggle {
+    font-size: 14px;
+  }
+
+  .result {
+    font-size: 16px;
+  }
+}
+
+
+    
   </style>
 </head>
 <body>
@@ -105,6 +153,7 @@ button {
 
   <!-- Length Converter -->
   <div id="length" class="converter active">
+    <div class="form-group">
     <input type="number" id="lengthInput" placeholder="Enter value">
     <select id="lengthFrom">
       <option value="millimeter">Millimeter</option>
@@ -129,11 +178,13 @@ button {
     </select>
     <br>
     <button onclick="convertLength()">Convert</button>
+    </div>
     <div class="result" id="lengthResult"></div>
   </div>
 
   <!-- Weight Converter -->
   <div id="weight" class="converter">
+    <div class="form-group">
     <input type="number" id="weightInput" placeholder="Enter value">
     <select id="weightFrom">
       <option value="milligram">Milligram</option>
@@ -152,11 +203,13 @@ button {
     </select>
     <br>
     <button onclick="convertWeight()">Convert</button>
+    </div>
     <div class="result" id="weightResult"></div>
   </div>
 
   <!-- Temperature Converter -->
   <div id="temperature" class="converter">
+    <div class="form-group">
     <input type="number" id="tempInput" placeholder="Enter value">
     <select id="tempFrom">
       <option value="celsius">Celsius</option>
@@ -171,11 +224,13 @@ button {
     </select>
     <br>
     <button onclick="convertTemperature()">Convert</button>
+    </div>
     <div class="result" id="tempResult"></div>
   </div>
 
   <!-- Volume Converter -->
 <div id="volume" class="converter">
+    <div class="form-group">
   <input type="number" id="volumeInput" placeholder="Enter value">
   <select id="volumeFrom">
     <option value="milliliter">Milliliter</option>
@@ -196,12 +251,14 @@ button {
   </select>
   <br>
   <button onclick="convertVolume()">Convert</button>
+  </div>
   <div class="result" id="volumeResult"></div>
 </div>
 
 
 <!-- Area Converter -->
 <div id="area" class="converter">
+    <div class="form-group">
   <input type="number" id="areaInput" placeholder="Enter value">
   <select id="areaFrom">
     <option value="square_millimeter">Square Millimeter</option>
@@ -226,6 +283,7 @@ button {
   </select>
   <br>
   <button onclick="convertArea()">Convert</button>
+  </div>
   <div class="result" id="areaResult"></div>
 </div>
 
