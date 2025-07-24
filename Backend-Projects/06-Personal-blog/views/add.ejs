@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add New Article</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>📝 Add New Article</h1>
+
+  <% if (error) { %>
+    <p style="color:red;"><%= error %></p>
+  <% } %>
+
+  <form action="/admin/add" method="POST">
+    <label>Title:</label><br>
+    <input type="text" name="title" required><br><br>
+
+    <label>Content:</label><br>
+    <textarea name="content" rows="10" required></textarea><br><br>
+
+    <label>Date (YYYY-MM-DD):</label><br>
+    <input type="date" name="date" required><br><br>
+
+    <button type="submit">Publish</button>
+  </form>
+
+  <br>
+  <a href="/admin">← Back to Dashboard</a>
+</body>
+</html>

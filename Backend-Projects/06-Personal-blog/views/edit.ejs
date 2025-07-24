@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Article</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>✏️ Edit Article</h1>
+
+  <% if (error) { %>
+    <p style="color:red;"><%= error %></p>
+  <% } %>
+
+  <form action="/admin/edit/<%= article.id %>" method="POST">
+    <label>Title:</label><br>
+    <input type="text" name="title" value="<%= article.title %>" required><br><br>
+
+    <label>Content:</label><br>
+    <textarea name="content" rows="10" required><%= article.content %></textarea><br><br>
+
+    <label>Date:</label><br>
+    <input type="date" name="date" value="<%= article.date %>" required><br><br>
+
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <br>
+  <a href="/admin">← Back to Dashboard</a>
+</body>
+</html>
