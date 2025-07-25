@@ -24,7 +24,7 @@ const options = {
 
 
 https.get(url, options, (res) => {
-  let data = '';
+  let userdata = '';
 
   // Check for errors (404, 403, etc.)
   if (res.statusCode === 404) {
@@ -37,17 +37,17 @@ https.get(url, options, (res) => {
 
   // Read data chunks
   res.on('data', (chunk) => {
-    data += chunk;
+    userdata += chunk;
   });
 
   // Once data is received
   res.on('end', () => {
+  
     try {
-      const events = JSON.parse(data);
-
+      const events = JSON.parse(userdata);
       console.log(`📋 Recent GitHub activity for "${username}":\n`);
 
-      events.slice(0, 10).forEach((event) => {
+      events.slice(0, 20).forEach((event) => {
         switch (event.type) {
           case 'PushEvent':
             console.log(`🚀 Pushed ${event.payload.commits.length} commit(s) to ${event.repo.name}`);

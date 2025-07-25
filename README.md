@@ -5,8 +5,23 @@ This repository contains front-end projects built following the [roadmap.sh]([ht
 https://roadmap.sh/projects/portfolio-website
 
 
-projects - CHange log Component - https://roadmap.sh/projects/changelog-component
+04 - CHange log Component - https://roadmap.sh/projects/changelog-component
+
 05- Testimonial card project - https://roadmap.sh/projects/testimonial-cards
+
+06 - Date Picker UI
+https://roadmap.sh/projects/datepicker-ui
+
+07- Accesscible form
+https://roadmap.sh/projects/accessible-form-ui
 
 # Back-end Projects
 02 Github User activity - https://roadmap.sh/projects/github-user-activity
+03 Expense Tracker 
+ https://roadmap.sh/projects/expense-tracker
+04 Guessing Game CLI 
+https://roadmap.sh/projects/number-guessing-game
+05 Unit Converter 
+https://roadmap.sh/projects/unit-converter
+06 Persoonal Blog 
+project link - https://roadmap.sh/projects/personal-blog

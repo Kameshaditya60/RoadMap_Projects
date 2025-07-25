@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>📂 Admin Dashboard</h1>
+
+  <p><a href="/admin/add">➕ Add New Article</a></p>
+  <p><a href="/logout">🚪 Logout</a></p>
+
+  <hr>
+
+  <% if (articles.length === 0) { %>
+    <p>No articles yet.</p>
+  <% } else { %>
+    <ul>
+      <% articles.forEach(article => { %>
+        <li>
+          <strong><%= article.title %></strong> (<%= article.date %>)
+          <br>
+          <a href="/article/<%= article.id %>" target="_blank">🔍 View</a> |
+          <a href="/admin/edit/<%= article.id %>">✏️ Edit</a> |
+          <a href="/admin/delete/<%= article.id %>" onclick="return confirm('Delete this article?')">🗑 Delete</a>
+        </li>
+        <br>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>

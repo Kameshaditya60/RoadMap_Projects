@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+        <form  class="profile-form" aria-labelledby="profileFormTittle">
+        
+            <!-- Full Name -->
+             
+             <label for="fullName">Full Name</label>
+             <div class="form-label">
+             <input type="text" id="fullName" placeholder="Enter your full name"/>
+             </div>
+             <!-- Email  (with Error) -->
+            
+              <label for="email">Email</label>
+              <div class="form-label">
+              <input type="email" id="email" aria-invalid="true" value="john@dow.com"/>
+              <p class="error-message" id="emailError"> Email is Already taken</p>
+                </div>
+              <!-- Password -->
+               <label for="password">Enter Password</label>
+               <div class="password-wrapper">
+                   <input type="password" id="password" placeholder="XXXXXXXXXX" aria-describedby="passwordDesc"/>
+                   <span class="eye-icon" role="button" tabindex="0" aria-label="Toggle password visibility">👁</span>
+               </div>
+
+               <!-- Confirm Password  -->
+
+               <label for="confirmPassword">Confirm Password</label>
+               <div class="password-wrapper">
+                   <input type="password" id="confirmPassword" placeholder="XXXXXXXXXX" aria-describedby="confirmPasswordDesc"/>
+                   <span class="eye-icon" role="button" tabindex="0" aria-label="Toggle password visibility">👁</span>
+               </div>
+        </form>
+        <button class="submit-button" type="submit">Update Profile</button>
+        </div>
+
+        <!-- Right panel -->
+
+        <aside class="profile-completeness" aria-label="Profile Completeness">
+            <div class="progress-circle">65%</div>
+            <h3>Profile Completeness</h3>
+            <ul>
+                <li><s>Create Account</s></li>
+                <li><s>Update Email</s></li>
+                <li><s>Set Password</s></li>
+                <li>Complete your first project</li>
+                <li>Invite your Friends</li>
+            </ul>
+        </aside>
+
+
+
+    </div>
+
+</body>
+</html>

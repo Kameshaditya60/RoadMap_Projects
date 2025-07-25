@@ -1,0 +1,73 @@
+.container {
+  max-width: 100%;
+  margin: 50px 50px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 15px;
+  align-self: center;
+  align-items: center;
+  display: flex;
+}
+input {
+  border: 1px solid #aaa;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: 2px solid rgb(7, 7, 21);
+}
+.form-label {
+  /* font-weight: bold; */
+  margin-bottom: 8px;
+  display: block;
+}
+
+input[aria-invalid="true"] {
+  border-color: red;
+  background-color: #fff0f0;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.eye-icon {
+  margin-left: -30px;
+  cursor: pointer;
+}
+
+button {
+  background: black;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.profile-completeness {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin-left: 60px;
+}
+.progress-circle {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #ccc;
+  border-radius: 50%;
+  border-top-color: black;
+  animation: spin 1s linear infinite;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size:2rem
+}
